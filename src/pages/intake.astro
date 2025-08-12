@@ -38,11 +38,7 @@ const description = 'Start your professional website development. Complete the i
             </div>
           </div>
 
-          <form name="client-intake" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you" class="space-y-8">
-            <input type="hidden" name="form-name" value="client-intake" />
-            <p class="hidden">
-              <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-            </p>
+          <form name="client-intake" method="POST" action="/intake/submit" class="space-y-8">
 
             <!-- STEP 1: Business Information -->
             <div x-show="showAll || step === 1" x-cloak class="space-y-4" x-ref="step1">
