@@ -1,11 +1,32 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Process from '../components/Process.astro';
+import ValueProp from '../components/ValueProp.astro';
+import Pricing from '../components/Pricing.astro';
+import Guarantee from '../components/Guarantee.astro';
+import FAQ from '../components/FAQ.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import CTA from '../components/CTA.astro';
+import WhatsAppWidget from '../components/WhatsAppWidget.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Website Design South Africa | Professional Business Websites in 48 Hours | Rapid Sites';
+const description = 'Professional website design for South African businesses in Cape Town, Johannesburg & Durban. R5,500 total investment, 48-hour delivery. Mobile-optimized, SEO-ready websites that get found on Google.';
 ---
 
-<Layout>
-	<Welcome />
+<Layout {title} {description}>
+  <Header />
+  <main>
+    <Hero />
+    <ValueProp />
+    <Process />
+    <Pricing />
+    <Guarantee />
+    <FAQ />
+    <CTA />
+  </main>
+  <WhatsAppWidget />
+  <Footer />
 </Layout>

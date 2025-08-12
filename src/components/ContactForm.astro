@@ -1,0 +1,28 @@
+---
+const email = 'hello@rapidsites.co.za';
+---
+<form action={`mailto:${email}`} method="POST" enctype="text/plain" target="_blank" class="card p-4 sm:p-5">
+  <div class="grid sm:grid-cols-2 gap-3">
+    <div>
+      <label for="name" class="label">Full name</label>
+      <input id="name" name="name" type="text" required class="input" placeholder="Your name" />
+    </div>
+    <div>
+      <label for="phone" class="label">Phone (+27)</label>
+                <input id="phone" name="phone" type="tel" required pattern="^\+27\s?\d{2}\s?\d{3}\s?\d{4}$" class="input" placeholder="+27 61 463 1005" />
+    </div>
+    <div class="sm:col-span-2">
+      <label for="email" class="label">Email</label>
+      <input id="email" name="email" type="email" required class="input" placeholder="you@example.com" />
+    </div>
+    <div class="sm:col-span-2">
+      <label for="message" class="label">Project details (optional)</label>
+      <textarea id="message" name="message" rows="3" class="textarea" placeholder="Tell us about your business and goals"></textarea>
+    </div>
+  </div>
+  <div class="mt-3 flex flex-col sm:flex-row gap-2">
+    <button type="submit" class="button-primary w-full sm:w-auto">Send Brief</button>
+            <a href="https://wa.me/27614631005" target="_blank" rel="noopener" class="button-secondary w-full sm:w-auto">WhatsApp Instead</a>
+  </div>
+  <p class="mt-2 text-[11px] text-neutral-500">Submitting opens your email client; reply to confirm. We’ll respond within one business day.</p>
+</form>

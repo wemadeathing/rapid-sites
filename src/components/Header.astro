@@ -1,0 +1,39 @@
+---
+import logoUrl from '../assets/brand/rapid-sites-logo.svg?url';
+---
+<header class="sticky top-0 z-40 bg-white" x-data="{ open:false }">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-20 items-center justify-between">
+      <a href="#about" class="flex items-center">
+        <img src={logoUrl} alt="Rapid Sites" class="h-8 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-neutral-700">
+        <a href="#value-prop" class="hover:text-neutral-900 transition-colors focus:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-700)] focus:ring-offset-2 rounded-sm">Features</a>
+        <a href="#how-it-works" class="hover:text-neutral-900 transition-colors focus:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-700)] focus:ring-offset-2 rounded-sm">How It Works</a>
+        <a href="#pricing" class="hover:text-neutral-900 transition-colors focus:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-700)] focus:ring-offset-2 rounded-sm">Pricing</a>
+        <a href="#contact" class="hover:text-neutral-900 transition-colors focus:text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-700)] focus:ring-offset-2 rounded-sm">Contact</a>
+      </nav>
+      <div class="hidden md:flex items-center">
+        <a href="/intake" class="button-primary">Get Your Website</a>
+      </div>
+      <button class="md:hidden inline-flex items-center justify-center rounded-full p-2 border border-neutral-200" @click="open = !open" aria-label="Toggle menu">
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+        </svg>
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div class="md:hidden" x-show="open" x-transition>
+      <div class="pt-2 pb-4 space-y-1">
+        <a href="#value-prop" @click="open=false" class="block px-3 py-2 text-neutral-700 hover:bg-neutral-50 rounded-md">Features</a>
+        <a href="#how-it-works" @click="open=false" class="block px-3 py-2 text-neutral-700 hover:bg-neutral-50 rounded-md">How It Works</a>
+        <a href="#pricing" @click="open=false" class="block px-3 py-2 text-neutral-700 hover:bg-neutral-50 rounded-md">Pricing</a>
+        <a href="#contact" @click="open=false" class="block px-3 py-2 text-neutral-700 hover:bg-neutral-50 rounded-md">Contact</a>
+        <a href="/intake" @click="open=false" class="block px-3 py-2 button-primary text-center">Get Your Website</a>
+      </div>
+    </div>
+  </div>
+</header>
+

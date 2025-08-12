@@ -1,0 +1,61 @@
+<section class="section bg-neutral-50" id="faq">
+  <div class="container-page">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-4xl font-semibold text-neutral-900">Common questions</h2>
+      <p class="mt-4 text-lg text-neutral-600">Everything you need to know about our service</p>
+    </div>
+    
+    <div class="mt-12 max-w-4xl mx-auto space-y-4">
+      <div x-data="{open:true}" class="bg-white rounded-2xl border-2 border-neutral-900">
+        <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
+          <span class="font-semibold text-neutral-900">How quickly will my website be ready?</span>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+        </button>
+        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+          We deliver your completed website for review within 48 hours of receiving your deposit and information. The final launch date depends on how quickly you provide feedback and approval - you control the timeline.
+        </div>
+      </div>
+
+      <div x-data="{open:false}" class="bg-white rounded-2xl border-2 border-neutral-900">
+        <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
+          <span class="font-semibold text-neutral-900">What if I need changes after you build it?</span>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+        </button>
+        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+          One revision cycle is included before final payment. We'll make your requested changes quickly, then you pay the final balance and go live.
+        </div>
+      </div>
+
+      <div x-data="{open:false}" class="bg-white rounded-2xl border-2 border-neutral-900">
+        <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
+          <span class="font-semibold text-neutral-900">Do you include hosting?</span>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+        </button>
+        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+          We’ll guide you to fast, affordable hosting and handle the handover so you retain full control.
+        </div>
+      </div>
+
+      <div x-data="{open:false}" class="bg-white rounded-2xl border-2 border-neutral-900">
+        <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
+          <span class="font-semibold text-neutral-900">Why is the timeline dependent on my feedback?</span>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+        </button>
+        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+          We build fast, but we want you to be completely happy. The 48-hour promise is for our delivery to you - your approval and feedback timing determines when you actually go live.
+        </div>
+      </div>
+
+      <div x-data="{open:false}" class="bg-white rounded-2xl border-2 border-neutral-900">
+        <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
+          <span class="font-semibold text-neutral-900">What makes this different from DIY builders?</span>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+        </button>
+        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+          Professional design, research‑based structure, and real on‑page SEO. No lock‑in or bloated scripts.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

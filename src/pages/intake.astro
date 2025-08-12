@@ -1,0 +1,234 @@
+---
+import Layout from '../layouts/Layout.astro';
+import logoUrl from '../assets/brand/rapid-sites-logo.svg?url';
+const title = 'Client Intake Form | Rapid Sites';
+const description = 'Start your professional website development. Complete the intake form to secure your development slot.';
+---
+
+<Layout {title} {description}>
+  <!-- Slim page header -->
+  <header class="sticky top-0 z-30 bg-white border-b border-neutral-200/80">
+    <div class="container-page h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <img src={logoUrl} alt="Rapid Sites" class="h-6 w-auto" />
+      </a>
+      <a href="/" class="text-sm link-brand">Back to homepage</a>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container-page">
+      <div class="max-w-3xl mx-auto">
+        <div class="card p-6 md:p-8" x-data="{ step: 1, total: 3, showAll: false }">
+          <div class="flex items-start justify-between">
+            <div>
+              <h1 class="heading-section">Client Intake Form</h1>
+              <p class="mt-2 text-sm text-neutral-600">Complete this form to begin your professional website development. A <strong>R2,750 deposit</strong> secures your development slot, with the remaining <strong>R2,750</strong> due on completion. Your website will be ready for approval within <strong>24–48 hours</strong> of deposit payment.</p>
+            </div>
+          </div>
+
+          <hr class="my-6 border-neutral-200" />
+          <!-- Progress -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between text-xs text-neutral-600">
+              <span>Step <span x-text="step"></span> of <span x-text="total"></span></span>
+              <span x-text="Math.round((step/total)*100) + '%' "></span>
+            </div>
+            <div class="mt-2 h-2 bg-neutral-200 rounded-full overflow-hidden">
+              <div class="h-full bg-[var(--color-brand-700)]" :style="{ width: ((step/total)*100) + '%' }"></div>
+            </div>
+          </div>
+
+          <form name="client-intake" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you" class="space-y-8">
+            <input type="hidden" name="form-name" value="client-intake" />
+            <p class="hidden">
+              <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+            </p>
+
+            <!-- STEP 1: Business Information -->
+            <div x-show="showAll || step === 1" x-cloak class="space-y-4" x-ref="step1">
+              <h2 class="text-lg font-semibold">Business Information</h2>
+              <div>
+                <label class="label">Business Name *</label>
+                <input class="input" type="text" name="business_name" placeholder="Your company name" required />
+              </div>
+              <div>
+                <label class="label">Contact Person *</label>
+                <input class="input" type="text" name="contact_name" placeholder="Your full name" required />
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="label">Email Address *</label>
+                  <input class="input" type="email" name="email" placeholder="your.email@company.com" required />
+                </div>
+                <div>
+                  <label class="label">Phone Number *</label>
+                  <input class="input" type="tel" name="phone" placeholder="+27 XX XXX XXXX" required />
+                </div>
+              </div>
+              <div>
+                <label class="label">Business Location *</label>
+                <input class="input" type="text" name="location" placeholder="Cape Town, Western Cape" required />
+              </div>
+
+              <div class="pt-4 flex items-center justify-end gap-3">
+                <button type="button" class="button-primary" @click="step = 2">Next</button>
+              </div>
+            </div>
+
+            <!-- STEP 2: Business Details + Online Presence -->
+            <div x-show="showAll || step === 2" x-cloak class="space-y-6" x-ref="step2">
+              <div class="space-y-4">
+                <h2 class="text-lg font-semibold">Business Details</h2>
+                <div>
+                  <label class="label">Industry *</label>
+                  <select class="input" name="industry" required>
+                    <option value="">Select your industry</option>
+                    <option>Professional Services</option>
+                    <option>Medical/Healthcare</option>
+                    <option>Legal</option>
+                    <option>Accounting</option>
+                    <option>Construction</option>
+                    <option>Automotive</option>
+                    <option>Restaurant/Food</option>
+                    <option>Retail</option>
+                    <option>Beauty/Wellness</option>
+                    <option>Consulting</option>
+                    <option>Real Estate</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="label">Business Description *</label>
+                  <textarea class="textarea" name="business_description" rows="3" maxlength="300" placeholder="Briefly describe your main services or products" required></textarea>
+                </div>
+                <div>
+                  <label class="label">Main Services/Products *</label>
+                  <textarea class="textarea" name="services" rows="3" maxlength="400" placeholder="List your main services or products" required></textarea>
+                </div>
+                <div>
+                  <label class="label">Target Customers *</label>
+                  <textarea class="textarea" name="target_customers" rows="2" maxlength="200" placeholder="Who are your ideal customers?" required></textarea>
+                </div>
+              </div>
+
+              <hr class="border-neutral-200" />
+
+              <div class="space-y-4">
+                <h2 class="text-lg font-semibold">Current Online Presence</h2>
+                <div>
+                  <label class="label">Current Website</label>
+                  <input class="input" type="url" name="current_website" placeholder="https://yourwebsite.co.za (leave blank if none)" />
+                </div>
+                <div>
+                  <label class="label">Do you have a domain? *</label>
+                  <div class="mt-2 grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
+                    <label class="inline-flex items-center gap-2"><input type="radio" name="has_domain" value="yes_co_za" required /> <span>Yes, I own a .co.za domain</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="radio" name="has_domain" value="yes_other" required /> <span>Yes, I own another domain (.com, etc.)</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="radio" name="has_domain" value="no" required /> <span>No, I need help getting a domain</span></label>
+                  </div>
+                </div>
+                <div>
+                  <label class="label">Domain Name</label>
+                  <input class="input" type="text" name="domain_name" placeholder="yourcompany.co.za" />
+                </div>
+                <div>
+                  <label class="label">Do you have hosting? *</label>
+                  <div class="mt-2 grid grid-cols-1 md:grid-cols-3 gap-2 text-sm">
+                    <label class="inline-flex items-center gap-2"><input type="radio" name="has_hosting" value="yes" required /> <span>Yes, I have hosting</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="radio" name="has_hosting" value="no" required /> <span>No, I need hosting setup</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="radio" name="has_hosting" value="unsure" required /> <span>Not sure</span></label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 flex items-center justify-between gap-3">
+                <button type="button" class="button-secondary" @click="step = 1">Back</button>
+                <button type="button" class="button-primary" @click="step = 3">Next</button>
+              </div>
+            </div>
+
+            <!-- STEP 3: Requirements + Extras + Submit -->
+            <div x-show="showAll || step === 3" x-cloak class="space-y-6" x-ref="step3">
+              <div class="space-y-4">
+                <h2 class="text-lg font-semibold">Website Requirements</h2>
+                <div>
+                  <label class="label">Main goals for your website *</label>
+                  <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="goals[]" value="get_found_google" /> <span>Get found on Google</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="goals[]" value="look_professional" /> <span>Look more professional</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="goals[]" value="capture_inquiries" /> <span>Capture customer inquiries</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="goals[]" value="show_services" /> <span>Show our services clearly</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="goals[]" value="build_trust" /> <span>Build trust with customers</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="goals[]" value="compete_online" /> <span>Compete with other businesses online</span></label>
+                  </div>
+                </div>
+                <div>
+                  <label class="label">Important features</label>
+                  <div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="features[]" value="contact_forms" /> <span>Contact forms</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="features[]" value="whatsapp" /> <span>WhatsApp integration</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="features[]" value="google_maps" /> <span>Google Maps/directions</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="features[]" value="photo_gallery" /> <span>Photo gallery</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="features[]" value="testimonials" /> <span>Customer testimonials</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="features[]" value="service_listings" /> <span>Service listings</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="features[]" value="about_section" /> <span>About us section</span></label>
+                    <label class="inline-flex items-center gap-2"><input type="checkbox" name="features[]" value="business_hours" /> <span>Business hours display</span></label>
+                  </div>
+                </div>
+                <div>
+                  <label class="label">Special content to include</label>
+                  <textarea class="textarea" name="special_content" rows="3" maxlength="300" placeholder="Any special content, achievements, or unique selling points you want highlighted (optional)"></textarea>
+                </div>
+              </div>
+
+              <hr class="border-neutral-200" />
+
+              <div class="space-y-4">
+                <h2 class="text-lg font-semibold">Additional Information</h2>
+                <div>
+                  <label class="label">How did you find us?</label>
+                  <select class="input" name="source">
+                    <option value="">How did you find Rapid Sites?</option>
+                    <option value="google">Google search</option>
+                    <option value="referral">Referral from friend/colleague</option>
+                    <option value="social_media">Social media</option>
+                    <option value="directory">Business directory</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="label">Anything else we should know?</label>
+                  <textarea class="textarea" name="additional_notes" rows="2" maxlength="200" placeholder="Any special requirements, concerns, or questions (optional)"></textarea>
+                </div>
+              </div>
+
+              <div class="pt-8 mt-2 border-t border-neutral-200 flex flex-col gap-4">
+                <div class="text-sm text-neutral-700">
+                  <p><strong>Total Investment: R5,500</strong></p>
+                  <ul class="list-disc ml-5 mt-1">
+                    <li><strong>Deposit today: R2,750</strong> (secures development slot)</li>
+                    <li><strong>Balance on completion: R2,750</strong> (pay when you approve final website)</li>
+                  </ul>
+                  <p class="mt-2"><strong>What happens after you submit:</strong></p>
+                  <ol class="list-decimal ml-5 mt-1">
+                    <li>Bank details sent - You'll receive our banking details via email</li>
+                    <li>Pay R2,750 deposit - Transfer deposit to secure your development slot</li>
+                    <li>Development starts - We begin building within 24 hours of payment confirmation</li>
+                    <li>Review & approve - See your completed website, request changes</li>
+                    <li>Go live - Pay final R2,750 and your website goes live immediately</li>
+                  </ol>
+                </div>
+
+                <div class="flex items-center justify-between gap-3">
+                  <button type="button" class="button-secondary" @click="step = 2">Back</button>
+                  <button type="submit" class="button-primary w-full md:w-auto mt-2" @click="showAll = true">Submit Form & Get Banking Details</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+

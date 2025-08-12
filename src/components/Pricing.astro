@@ -1,0 +1,51 @@
+---
+import pricingSvgUrl from '../assets/pricing.svg?url';
+---
+<section id="pricing" class="section bg-white">
+  <div class="container-page">
+    <div class="text-center max-w-4xl mx-auto">
+      <h2 class="text-4xl font-semibold text-neutral-900">Professional Investment, Professional Results</h2>
+      <p class="mt-4 text-lg text-neutral-600">Split payment structure for committed business owners.</p>
+    </div>
+
+    <div class="mt-10 relative rounded-[28px] overflow-hidden px-6 md:px-10 py-10 md:py-14">
+      <div class="absolute inset-0 pricing-bg"></div>
+
+      <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+        <!-- Left: plan details + price/CTA -->
+        <div class="max-w-2xl text-black">
+
+          <h3 class="text-3xl font-semibold text-neutral-900">Professional Website Development</h3>
+          <p class="mt-2 text-black/85 text-sm md:text-base">Ready for review within 48 hours. One revision cycle included.</p>
+
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3 text-sm">
+            <div class="flex items-start gap-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black text-white text-[10px] leading-none mt-0.5">✓</span> <span>Research‑driven content structure</span></div>
+            <div class="flex items-start gap-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black text-white text-[10px] leading-none mt-0.5">✓</span> <span>Mobile‑first, SA‑optimized design</span></div>
+            <div class="flex items-start gap-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black text-white text-[10px] leading-none mt-0.5">✓</span> <span>Lead form + WhatsApp + Maps</span></div>
+            <div class="flex items-start gap-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black text-white text-[10px] leading-none mt-0.5">✓</span> <span>On‑page SEO and performance</span></div>
+
+          </div>
+
+          <div class="mt-8">
+            <div class="flex items-baseline gap-2">
+              <span class="text-5xl font-semibold text-neutral-900">R5,500</span>
+              <span class="text-neutral-700">Total Investment</span>
+            </div>
+            <p class="mt-1 text-sm text-black/75">R2,750 deposit + R2,750 on completion</p>
+            <a href="/intake" class="mt-6 inline-flex items-center justify-center rounded-[9999px] px-6 py-4 text-sm font-medium text-white bg-black">Get Your Website</a>
+          </div>
+        </div>
+
+        <!-- Right: pricing image centered -->
+        <div class="w-full max-w-[520px] md:justify-self-end flex items-center justify-center">
+          <img src={pricingSvgUrl} alt="Two business professionals shaking hands over a contract" class="w-full h-auto" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .pricing-bg { background: var(--color-brand-700); }
+  </style>
+</section>
+

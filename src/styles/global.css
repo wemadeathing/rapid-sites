@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #E8FFFC;
+  --color-brand-100: #D1FAF6;
+  --color-brand-200: #B8F4EE;
+  --color-brand-300: #8DEBE3;
+  --color-brand-400: #4FE0D4;
+  --color-brand-500: #1ED4C7;
+  --color-brand-600: #1EBFBF; /* primary teal */
+  --color-brand-700: #1EBFBF; /* primary teal */
+  --color-brand-800: #009A91;
+  --color-brand-900: #007D77;
+
+  --color-accent-600: #0B1F32; /* Surfshark deep navy */
+
+  /* Radii */
+  --radius-card: 12px;
+  --radius-button: 9999px;
+  --radius-input: 8px;
+}
+
+/* Base typography and smoothing */
+@layer base {
+  html { @apply scroll-smooth antialiased; }
+  body { @apply bg-neutral-50 text-neutral-900; }
+  
+  /* Scroll margin for anchor links */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
+/* Layout primitives */
+@utility container-page { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
+@utility section { @apply py-14 md:py-20; }
+@utility section-sm { @apply py-12 md:py-16; }
+@utility anchor-offset { scroll-margin-top: 5rem; }
+
+/* Utilities for gradients and cards */
+
+@utility card {
+  @apply rounded-[var(--radius-card)] border border-neutral-200/80 bg-white transition-all duration-200;
+}
+
+/* 
+BUTTON DESIGN SYSTEM RULES:
+
+🎯 PRIMARY ACTIONS:
+- button-primary: Black button with white text → Use on white/grey backgrounds
+- button-primary-on-dark: Teal button with black text → Use on black/dark backgrounds
+
+🎯 SECONDARY ACTIONS:
+- button-secondary: Dark outline button → Use on white/grey backgrounds  
+- button-secondary-on-dark: White outline button → Use on black/dark backgrounds
+
+📋 USAGE EXAMPLES:
+✅ Header (white bg): button-primary
+✅ Hero (teal bg): Custom black/dark outline buttons (treated as light bg due to black text)
+✅ Pricing (teal bg): button-primary (black button)
+✅ CTA (dark bg): button-primary-on-dark + button-secondary-on-dark
+✅ Mobile CTA (white bg): Black button for primary action
+*/
+
+/* Primary button for white/grey backgrounds */
+@utility button-primary {
+  @apply inline-flex items-center justify-center rounded-[var(--radius-button)] px-5 py-3 text-sm font-medium text-white bg-black hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 transition-colors;
+}
+
+/* Primary button for dark backgrounds */
+@utility button-primary-on-dark {
+  background-color: var(--color-brand-700);
+  @apply inline-flex items-center justify-center rounded-[var(--radius-button)] px-5 py-3 text-sm font-medium text-black hover:bg-[var(--color-brand-600)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-700)] focus:ring-offset-2 focus:ring-offset-neutral-900 transition-colors;
+}
+
+/* Secondary button for white/grey backgrounds */
+@utility button-secondary {
+  @apply inline-flex items-center justify-center rounded-[var(--radius-button)] px-5 py-3 text-sm font-medium text-neutral-900 bg-transparent border-2 border-neutral-900 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2 transition-colors;
+}
+
+/* Secondary button for dark backgrounds */
+@utility button-secondary-on-dark {
+  @apply inline-flex items-center justify-center rounded-[var(--radius-button)] px-5 py-3 text-sm font-medium text-white border-2 border-white bg-transparent hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900 transition-colors;
+}
+
+
+
+@utility brand-text-gradient {
+  background-image: linear-gradient(83.21deg, #0E2B44 0%, #1EBFBF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Typography */
+@utility heading-hero { @apply text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight; }
+@utility heading-section { @apply text-3xl md:text-4xl font-semibold tracking-tight; }
+@utility lead { @apply text-base sm:text-lg text-neutral-700; }
+@utility text-muted { @apply text-neutral-600; }
+
+/* Links */
+@utility link-brand { @apply text-[var(--color-brand-700)] hover:text-[var(--color-brand-600)]; }
+
+/* Forms */
+@utility label { @apply block text-xs font-medium text-neutral-600; }
+@utility input { @apply mt-1 w-full rounded-[var(--radius-input)] border border-neutral-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-300)]; }
+@utility textarea { @apply mt-1 w-full rounded-[var(--radius-input)] border border-neutral-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-300)]; }
+
+/* Background helpers */
+@utility section-alt { @apply bg-neutral-50; }
+/* Soft slab card background removed for brutalist; keep minimal */
+@utility slab {
+  @apply rounded-[24px] border-2 border-neutral-800 bg-white/90 py-8 md:py-12;
+}
+

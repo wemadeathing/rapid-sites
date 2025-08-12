@@ -1,0 +1,6 @@
+Team: Rapid Sites — SA Website Factory
+Twitter: @rapidsites
+From: South Africa
+
+Thanks: Astro, Tailwind CSS, Alpine.js
+Site: Static, fast, mobile-first

@@ -1,0 +1,59 @@
+---
+import ContactForm from './ContactForm.astro';
+---
+<section class="section bg-white" id="contact">
+  <div class="container-page">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Left: Form -->
+      <div>
+        <div class="text-xs uppercase tracking-wide text-neutral-500">Get started today</div>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-semibold text-neutral-900">Tell us about your business</h2>
+        <p class="mt-4 text-lg text-neutral-600">Ready to get online? Share some details about your business and we'll get back to you within 2 hours.</p>
+        
+        <div class="mt-8 card p-6">
+          <ContactForm />
+        </div>
+        
+        <div class="mt-6 flex items-center gap-6 text-sm text-neutral-600">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            2-hour response
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            48-hour delivery
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            No upfront payment
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right: Image -->
+      <div class="relative">
+        <div class="relative rounded-2xl overflow-hidden ring-1 ring-neutral-200 bg-neutral-50 aspect-[4/3] sm:aspect-[16/10] hero-image-retail">
+          <div class="absolute inset-0 bg-[rgba(14,43,68,0.15)]"></div>
+        </div>
+        
+        <!-- Floating testimonial card -->
+        <div class="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-4 max-w-xs">
+          <div class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/48?img=8" alt="Customer" class="w-10 h-10 rounded-full" />
+            <div>
+              <div class="text-sm font-semibold text-neutral-900">Sarah K.</div>
+              <div class="text-xs text-neutral-600">Online in 24 hours</div>
+            </div>
+          </div>
+          <p class="mt-2 text-xs text-neutral-700">"Amazing turnaround time. Professional result!"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
