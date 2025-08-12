@@ -12,7 +12,7 @@ const description = 'Start your professional website development. Complete the i
       <a href="/" class="flex items-center gap-2">
         <img src={logoUrl} alt="Rapid Sites" class="h-6 w-auto" />
       </a>
-      <a href="/" class="text-sm link-brand">Back to homepage</a>
+      <a href="/" class="inline-flex items-center justify-center rounded-[9999px] px-4 py-2 text-xs font-medium text-black border border-black bg-transparent hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-colors">Back to homepage</a>
     </div>
   </header>
   <section class="section">
@@ -226,5 +226,21 @@ const description = 'Start your professional website development. Complete the i
       </div>
     </div>
   </section>
+  
+  <!-- Simple Footer -->
+  <footer class="bg-neutral-50 border-t border-neutral-200/80">
+    <div class="container-page py-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <img src={logoUrl} alt="Rapid Sites" class="h-5 w-auto" />
+          <span class="text-sm text-neutral-600">© 2024 Rapid Sites. Professional websites in 48 hours.</span>
+        </div>
+        <div class="flex items-center gap-6 text-sm text-neutral-600">
+          <a href="mailto:hello@rapidsites.co.za" class="hover:text-neutral-900 transition-colors">hello@rapidsites.co.za</a>
+          <a href="https://wa.me/27614631005" target="_blank" rel="noopener" class="hover:text-neutral-900 transition-colors">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </Layout>
 
