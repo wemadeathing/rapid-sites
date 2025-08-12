@@ -8,22 +8,20 @@ import pricingSvgUrl from '../assets/pricing.svg?url';
       <p class="mt-4 text-lg text-neutral-600">Split payment structure for committed business owners.</p>
     </div>
 
-    <div class="mt-10 relative rounded-[28px] overflow-hidden px-6 md:px-10 py-10 md:py-14">
+    <div class="mt-10 relative rounded-[28px] overflow-hidden">
       <div class="absolute inset-0 pricing-bg"></div>
 
-      <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+      <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-center min-h-[500px] px-6 md:px-10 py-10 md:py-14">
         <!-- Left: plan details + price/CTA -->
-        <div class="max-w-2xl text-black">
-
+        <div class="lg:col-span-7 lg:pr-8">
           <h3 class="text-3xl font-semibold text-neutral-900">Professional Website Development</h3>
           <p class="mt-2 text-black/85 text-sm md:text-base">Ready for review within 48 hours. One revision cycle included.</p>
 
-          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3 text-sm">
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
             <div class="flex items-start gap-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black text-white text-[10px] leading-none mt-0.5">✓</span> <span>Research‑driven content structure</span></div>
             <div class="flex items-start gap-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black text-white text-[10px] leading-none mt-0.5">✓</span> <span>Mobile‑first, SA‑optimized design</span></div>
             <div class="flex items-start gap-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black text-white text-[10px] leading-none mt-0.5">✓</span> <span>Lead form + WhatsApp + Maps</span></div>
             <div class="flex items-start gap-2"><span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black text-white text-[10px] leading-none mt-0.5">✓</span> <span>On‑page SEO and performance</span></div>
-
           </div>
 
           <div class="mt-8">
@@ -36,9 +34,11 @@ import pricingSvgUrl from '../assets/pricing.svg?url';
           </div>
         </div>
 
-        <!-- Right: pricing image centered -->
-        <div class="w-full max-w-[520px] md:justify-self-end flex items-center justify-center">
-          <img src={pricingSvgUrl} alt="Two business professionals shaking hands over a contract" class="w-full h-auto" loading="lazy" />
+        <!-- Right: pricing image - optimized positioning -->
+        <div class="lg:col-span-5 flex items-center justify-center lg:justify-end">
+          <div class="w-full max-w-[420px] lg:max-w-none">
+            <img src={pricingSvgUrl} alt="Two business professionals shaking hands over a contract" class="w-full h-auto" loading="lazy" />
+          </div>
         </div>
       </div>
     </div>
