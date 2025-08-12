@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-export default async (req) => {
+export default async function handler(req) {
   try {
     if (req.method !== 'POST') {
       return new Response('Method Not Allowed', { status: 405 });
@@ -37,12 +37,17 @@ export default async (req) => {
       additional_notes: extract('additional_notes') || '',
     };
 
-    const smtpHost = Netlify.env.get('SMTP_HOST');
-    const smtpPort = parseInt(Netlify.env.get('SMTP_PORT') || '465', 10);
-    const smtpUser = Netlify.env.get('SMTP_USER');
-    const smtpPass = Netlify.env.get('SMTP_PASS');
-    const smtpFrom = Netlify.env.get('SMTP_FROM') || smtpUser;
-    const smtpTo = Netlify.env.get('SMTP_TO') || smtpUser;
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpPort = parseInt(process.env.SMTP_PORT || '465', 10);
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const smtpFrom = process.env.SMTP_FROM || smtpUser;
+    const smtpTo = process.env.SMTP_TO || smtpUser;
+
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      console.error('Missing SMTP configuration:', { smtpHost: !!smtpHost, smtpUser: !!smtpUser, smtpPass: !!smtpPass });
+      return new Response('Server configuration error', { status: 500 });
+    }
 
     const transporter = nodemailer.createTransport({
       host: smtpHost,
@@ -106,8 +111,9 @@ export default async (req) => {
       headers: { Location: '/thank-you' },
     });
   } catch (err) {
-    console.error('send-intake error', err);
-    return new Response('Internal Server Error', { status: 500 });
+    console.error('send-intake error:', err);
+    console.error('Error details:', err.message, err.stack);
+    return new Response(`Error: ${err.message}`, { status: 500 });
   }
 };
 
