@@ -48,7 +48,7 @@ export default async function handler(req, context) {
     }
 
     const emailPayload = {
-      from: 'rapidsites@nexevo.io',
+      from: 'onboarding@resend.dev',
       to: 'hello@rapidsites.co.za',
       replyTo: data.email,
       subject: `NEW CLIENT FORM SUBMISSION - Rapid Sites - ${data.business_name}`,
