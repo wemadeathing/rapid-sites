@@ -48,8 +48,8 @@ export default async function handler(req, context) {
     }
 
     const emailPayload = {
-      from: 'onboarding@resend.dev',
-      to: 'salaam.nasif@gmail.com',
+      from: 'rapidsites@reminders.nexevo.io',
+      to: 'hello@rapidsites.co.za',
       replyTo: data.email,
       subject: `NEW CLIENT FORM SUBMISSION - Rapid Sites - ${data.business_name}`,
       html: `
