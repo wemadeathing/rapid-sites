@@ -1,12 +1,6 @@
-import nodemailer from 'nodemailer';
-
 export default async function handler(req, context) {
   try {
-    console.log('Function called with method:', req.method);
-    console.log('Headers:', Object.fromEntries(req.headers.entries()));
-    
     if (req.method !== 'POST') {
-      console.log('Rejecting non-POST method:', req.method);
       return new Response('Method Not Allowed', { status: 405 });
     }
 
@@ -34,92 +28,101 @@ export default async function handler(req, context) {
       has_domain: extract('has_domain') || '',
       domain_name: extract('domain_name') || '',
       has_hosting: extract('has_hosting') || '',
-      goals: extract('goals[]') || [],
-      features: extract('features[]') || [],
+      goals: Array.isArray(extract('goals[]')) ? extract('goals[]').join(', ') : (extract('goals[]') || 'N/A'),
+      features: Array.isArray(extract('features[]')) ? extract('features[]').join(', ') : (extract('features[]') || 'N/A'),
       special_content: extract('special_content') || '',
       source: extract('source') || '',
-      additional_notes: extract('additional_notes') || '',
+      additional_notes: extract('additional_notes') || ''
     };
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = parseInt(process.env.SMTP_PORT || '465', 10);
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const smtpFrom = process.env.SMTP_FROM || smtpUser;
-    const smtpTo = process.env.SMTP_TO || smtpUser;
+    // Honeypot check
+    if (extract('bot-field')) {
+      return new Response('Bot detected', { status: 422 });
+    }
 
-    if (!smtpHost || !smtpUser || !smtpPass) {
-      console.error('Missing SMTP configuration:', { smtpHost: !!smtpHost, smtpUser: !!smtpUser, smtpPass: !!smtpPass });
+    // Use Resend to send email
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (!resendApiKey) {
+      console.error('Missing RESEND_API_KEY');
       return new Response('Server configuration error', { status: 500 });
     }
 
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpPort === 465,
-      auth: { user: smtpUser, pass: smtpPass },
+    const emailPayload = {
+      from: 'rapidsites@nexevo.co.za',
+      to: 'hello@rapidsites.co.za',
+      replyTo: data.email,
+      subject: `NEW CLIENT FORM SUBMISSION - Rapid Sites - ${data.business_name}`,
+      html: `
+        <p>🚨 PRIORITY: NEW PAID CLIENT FORM SUBMISSION</p>
+        <hr>
+        <h3>===== BUSINESS INFORMATION =====</h3>
+        <p><strong>Business:</strong> ${data.business_name}</p>
+        <p><strong>Contact:</strong> ${data.contact_name}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Phone:</strong> ${data.phone}</p>
+        <p><strong>Location:</strong> ${data.location}</p>
+        <hr>
+        <h3>===== AI RESEARCH INPUTS =====</h3>
+        <p><strong>Industry:</strong> ${data.industry}</p>
+        <p><strong>Business Description:</strong> ${data.business_description}</p>
+        <p><strong>Services:</strong> ${data.services}</p>
+        <p><strong>Target Customers:</strong> ${data.target_customers}</p>
+        <hr>
+        <h3>===== CURRENT SETUP ANALYSIS =====</h3>
+        <p><strong>Current Website:</strong> ${data.current_website || 'N/A'}</p>
+        <p><strong>Domain Status:</strong> ${data.has_domain}</p>
+        <p><strong>Domain Name:</strong> ${data.domain_name || 'N/A'}</p>
+        <p><strong>Hosting Status:</strong> ${data.has_hosting}</p>
+        <hr>
+        <h3>===== WEBSITE REQUIREMENTS =====</h3>
+        <p><strong>Primary Goals:</strong> ${data.goals}</p>
+        <p><strong>Requested Features:</strong> ${data.features}</p>
+        <p><strong>Special Content:</strong> ${data.special_content || 'N/A'}</p>
+        <hr>
+        <h3>===== PAYMENT STATUS =====</h3>
+        <p><strong>AWAITING DEPOSIT:</strong> R2,750</p>
+        <p><strong>BALANCE DUE:</strong> R2,750 (on completion)</p>
+        <p>Banking details sent to client ✅</p>
+        <hr>
+        <h3>===== IMMEDIATE ACTIONS =====</h3>
+        <ol>
+            <li>📧 SEND BANKING DETAILS EMAIL</li>
+            <li>🤖 START AI RESEARCH using prompts above</li>
+            <li>⏰ AWAIT PAYMENT CONFIRMATION</li>
+            <li>🏗️ BEGIN DEVELOPMENT within 24hrs of payment</li>
+            <li>📋 TARGET COMPLETION: [Date + 48hrs from payment]</li>
+        </ol>
+        <p><strong>Reference for payment:</strong> ${data.business_name}-${new Date().toISOString().slice(0, 10)}</p>
+        <p><strong>Source:</strong> ${data.source || 'N/A'}</p>
+        <p><strong>Additional Notes:</strong> ${data.additional_notes || 'N/A'}</p>
+      `,
+    };
+
+    const resendResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailPayload),
     });
 
-    const subject = `NEW CLIENT FORM SUBMISSION - AI Research Ready - ${data.business_name || ''}`;
-
-    const text = `PRIORITY: NEW PAID CLIENT FORM SUBMISSION\n\n` +
-      `===== BUSINESS INFORMATION =====\n` +
-      `Business: ${data.business_name}\n` +
-      `Contact: ${data.contact_name}\n` +
-      `Email: ${data.email}\n` +
-      `Phone: ${data.phone}\n` +
-      `Location: ${data.location}\n\n` +
-      `===== AI RESEARCH INPUTS =====\n` +
-      `Industry: ${data.industry}\n` +
-      `Business Description: ${data.business_description}\n` +
-      `Services: ${data.services}\n` +
-      `Target Customers: ${data.target_customers}\n\n` +
-      `===== CURRENT SETUP ANALYSIS =====\n` +
-      `Current Website: ${data.current_website}\n` +
-      `Domain Status: ${data.has_domain}\n` +
-      `Domain Name: ${data.domain_name}\n` +
-      `Hosting Status: ${data.has_hosting}\n\n` +
-      `===== WEBSITE REQUIREMENTS =====\n` +
-      `Primary Goals: ${Array.isArray(data.goals) ? data.goals.join(', ') : data.goals}\n` +
-      `Requested Features: ${Array.isArray(data.features) ? data.features.join(', ') : data.features}\n` +
-      `Special Content: ${data.special_content}\n\n` +
-      `===== AI CONTENT GENERATION PROMPTS =====\n` +
-      `Hero Section Prompt: "Create hero section for ${data.business_name}, a ${data.industry} business in ${data.location}. Target audience: ${data.target_customers}. Key message: ${data.business_description}"\n\n` +
-      `Services Section Prompt: "Create services section for: ${data.services}. Make it conversion-focused for ${data.target_customers} in ${data.location}."\n\n` +
-      `About Section Prompt: "Create compelling about section for ${data.business_name} highlighting: ${data.special_content}. Industry: ${data.industry}, Location: ${data.location}"\n\n` +
-      `Competitor Research Prompt: "Research ${data.industry} businesses in ${data.location}. Find 3-5 main competitors and analyze their website messaging, services, and positioning."\n\n` +
-      `===== PAYMENT STATUS =====\n` +
-      `AWAITING DEPOSIT: R2,750\n` +
-      `BALANCE DUE: R2,750 (on completion)\n` +
-      `Banking details sent to client ✅\n\n` +
-      `===== IMMEDIATE ACTIONS =====\n` +
-      `1. SEND BANKING DETAILS EMAIL\n` +
-      `2. START AI RESEARCH using prompts above\n` +
-      `3. AWAIT PAYMENT CONFIRMATION\n` +
-      `4. BEGIN DEVELOPMENT within 24hrs of payment\n` +
-      `5. TARGET COMPLETION: [Date + 48hrs from payment]\n\n` +
-      `Reference for payment: ${data.business_name} - ${new Date().toISOString().slice(0,10)}\n` +
-      `Source: ${data.source}\n` +
-      `Additional Notes: ${data.additional_notes}`;
-
-    await transporter.sendMail({
-      from: smtpFrom,
-      to: smtpTo,
-      replyTo: data.email || smtpFrom,
-      subject,
-      text,
-    });
+    if (!resendResponse.ok) {
+      const errorText = await resendResponse.text();
+      console.error('Resend API error:', errorText);
+      return new Response(`Email service error: ${errorText}`, { status: 500 });
+    }
 
     return new Response(null, {
-      status: 302,
-      headers: { Location: '/thank-you' },
+      status: 303,
+      headers: {
+        'Location': '/thank-you',
+      },
     });
+
   } catch (err) {
     console.error('send-intake error:', err);
     console.error('Error details:', err.message, err.stack);
     return new Response(`Error: ${err.message}`, { status: 500 });
   }
 };
-
-
-
