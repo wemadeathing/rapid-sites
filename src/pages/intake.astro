@@ -38,7 +38,7 @@ const description = 'Start your professional website development. Complete the i
             </div>
           </div>
 
-          <form name="client-intake" method="POST" action="/intake/submit" class="space-y-8">
+                          <form name="client-intake" method="POST" action="/.netlify/functions/send-intake" class="space-y-8">
 
             <!-- STEP 1: Business Information -->
             <div x-show="showAll || step === 1" x-cloak class="space-y-4" x-ref="step1">

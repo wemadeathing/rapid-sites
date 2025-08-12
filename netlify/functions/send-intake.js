@@ -117,7 +117,5 @@ export default async function handler(req, context) {
   }
 };
 
-export const config = {
-  path: '/intake/submit'
-};
+
 
