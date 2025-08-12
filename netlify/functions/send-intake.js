@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-export default async function handler(req) {
+export default async function handler(req, context) {
   try {
     if (req.method !== 'POST') {
       return new Response('Method Not Allowed', { status: 405 });
@@ -118,6 +118,6 @@ export default async function handler(req) {
 };
 
 export const config = {
-  path: ['/intake/submit', '/.netlify/functions/send-intake'],
+  path: '/intake/submit'
 };
 
