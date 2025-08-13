@@ -1,19 +1,25 @@
-export default async (req, context) => {
+exports.handler = async (event, context) => {
   try {
-    console.log('Function called with method:', req.method);
-    console.log('Headers:', Object.fromEntries(req.headers));
+    console.log('Function called with method:', event.httpMethod);
+    console.log('Headers:', event.headers);
     
-    if (req.method !== 'POST') {
-      console.log('Rejecting non-POST method:', req.method);
-      return new Response('Method Not Allowed', { status: 405 });
+    if (event.httpMethod !== 'POST') {
+      console.log('Rejecting non-POST method:', event.httpMethod);
+      return {
+        statusCode: 405,
+        body: 'Method Not Allowed'
+      };
     }
 
-    const contentType = req.headers.get('content-type') || '';
+    const contentType = event.headers['content-type'] || '';
     if (!contentType.includes('application/x-www-form-urlencoded')) {
-      return new Response('Unsupported Media Type', { status: 415 });
+      return {
+        statusCode: 415,
+        body: 'Unsupported Media Type'
+      };
     }
 
-    const bodyText = await req.text();
+    const bodyText = event.body || '';
     const params = new URLSearchParams(bodyText);
 
     const extract = (name) => params.getAll(name).length > 1 ? params.getAll(name) : params.get(name);
@@ -41,14 +47,20 @@ export default async (req, context) => {
 
     // Honeypot check
     if (extract('bot-field')) {
-      return new Response('Bot detected', { status: 422 });
+      return {
+        statusCode: 422,
+        body: 'Bot detected'
+      };
     }
 
     // Use Resend to send email
     const resendApiKey = process.env.RESEND_API_KEY;
     if (!resendApiKey) {
       console.error('Missing RESEND_API_KEY');
-      return new Response('Server configuration error', { status: 500 });
+      return {
+        statusCode: 500,
+        body: 'Server configuration error'
+      };
     }
 
     const emailPayload = {
@@ -114,19 +126,26 @@ export default async (req, context) => {
     if (!resendResponse.ok) {
       const errorText = await resendResponse.text();
       console.error('Resend API error:', errorText);
-      return new Response(`Email service error: ${errorText}`, { status: 500 });
+      return {
+        statusCode: 500,
+        body: `Email service error: ${errorText}`
+      };
     }
 
-    return new Response(null, {
-      status: 303,
+    return {
+      statusCode: 303,
       headers: {
         'Location': '/thank-you',
       },
-    });
+      body: ''
+    };
 
   } catch (err) {
     console.error('send-intake error:', err);
     console.error('Error details:', err.message, err.stack);
-    return new Response(`Error: ${err.message}`, { status: 500 });
+    return {
+      statusCode: 500,
+      body: `Error: ${err.message}`
+    };
   }
 };

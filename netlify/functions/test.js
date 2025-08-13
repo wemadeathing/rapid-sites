@@ -1,19 +1,24 @@
-export default async (req, context) => {
-  console.log('Test function called with method:', req.method);
+exports.handler = async (event, context) => {
+  console.log('Test function called with method:', event.httpMethod);
   
-  if (req.method === 'GET') {
-    return new Response('Test function is working!', { 
-      status: 200,
-      headers: { 'Content-Type': 'text/plain' }
-    });
+  if (event.httpMethod === 'GET') {
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'text/plain' },
+      body: 'Test function is working!'
+    };
   }
   
-  if (req.method === 'POST') {
-    return new Response('POST received successfully!', { 
-      status: 200,
-      headers: { 'Content-Type': 'text/plain' }
-    });
+  if (event.httpMethod === 'POST') {
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'text/plain' },
+      body: 'POST received successfully!'
+    };
   }
   
-  return new Response('Method not supported', { status: 405 });
+  return {
+    statusCode: 405,
+    body: 'Method not supported'
+  };
 };
