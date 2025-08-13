@@ -1,6 +1,10 @@
-export default async function handler(req, context) {
+export default async (req, context) => {
   try {
+    console.log('Function called with method:', req.method);
+    console.log('Headers:', Object.fromEntries(req.headers));
+    
     if (req.method !== 'POST') {
+      console.log('Rejecting non-POST method:', req.method);
       return new Response('Method Not Allowed', { status: 405 });
     }
 
