@@ -132,6 +132,67 @@ exports.handler = async (event, context) => {
       };
     }
 
+    // Send confirmation email to customer
+    const customerEmailPayload = {
+      from: 'rapidsites@reminders.nexevo.io',
+      to: data.email,
+      replyTo: 'hello@rapidsites.co.za',
+      subject: `✅ Development Slot Secured - ${data.business_name} - Banking Details Inside`,
+      html: `
+        <h2>🎉 Welcome to Rapid Sites!</h2>
+        <p>Hi ${data.contact_name},</p>
+        <p>Thank you for choosing Rapid Sites for your professional website development. Your development slot has been secured!</p>
+        
+        <div style="background: #0E7B7A; color: white; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="margin-top: 0;">💳 Banking Details - R2,750 Deposit</h3>
+          <p><strong>Bank:</strong> FNB</p>
+          <p><strong>Account Name:</strong> Nexevo Gold Business Account</p>
+          <p><strong>Account Number:</strong> 63137896685</p>
+          <p><strong>Account Type:</strong> Gold Business Account</p>
+          <p style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 10px; margin-top: 15px;">
+            <strong>Payment Reference:</strong> ${data.business_name}
+          </p>
+          <p style="font-size: 12px; margin-bottom: 0;">⚡ Development begins within 24 hours of deposit confirmation</p>
+        </div>
+
+        <h3>What happens next:</h3>
+        <ol>
+          <li><strong>Payment confirmation</strong> - We'll confirm your R2,750 deposit within 1 hour</li>
+          <li><strong>Development begins</strong> - Your website development starts within 24 hours</li>
+          <li><strong>Completion notice</strong> - You'll receive your website for review within 24-48 hours</li>
+          <li><strong>Final approval</strong> - Make any requested changes and approve</li>
+          <li><strong>Go live</strong> - Pay final R2,750 and your website goes live immediately</li>
+        </ol>
+
+        <h3>Questions?</h3>
+        <p>Email: <a href="mailto:hello@rapidsites.co.za">hello@rapidsites.co.za</a><br>
+        WhatsApp: <a href="https://wa.me/27614631005">+27 61 463 1005</a></p>
+
+        <p>We're excited to build your professional website!</p>
+        <p>Best regards,<br>The Rapid Sites Team</p>
+      `,
+    };
+
+    // Send customer confirmation email (don't fail if this fails)
+    try {
+      const customerEmailResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${resendApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(customerEmailPayload),
+      });
+      
+      if (!customerEmailResponse.ok) {
+        console.error('Customer email failed, but continuing...');
+      } else {
+        console.log('Customer confirmation email sent successfully');
+      }
+    } catch (emailErr) {
+      console.error('Customer email error (continuing):', emailErr);
+    }
+
     return {
       statusCode: 303,
       headers: {
