@@ -217,7 +217,7 @@ const description = 'Start your professional website development. Complete the i
 
                 <div class="flex items-center justify-between gap-3">
                   <button type="button" class="button-secondary" @click="step = 2; window.scrollTo({top: 0, behavior: 'smooth'})">Back</button>
-                  <button type="submit" class="button-primary w-full md:w-auto mt-2" @click="showAll = true">Submit Form & Get Banking Details</button>
+                  <button type="button" class="button-primary w-full md:w-auto mt-2" @click="showAll = true; setTimeout(() => { $el.closest('form').submit(); }, 100)">Submit Form & Get Banking Details</button>
                 </div>
               </div>
             </div>
