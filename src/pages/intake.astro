@@ -72,16 +72,11 @@ const description = 'Start your professional website development. Complete the i
             }
           }
         }" x-init="
-          // Watch for input changes to update button state
           $nextTick(() => {
-            document.addEventListener('input', () => {
-              $nextTick(() => {
-                // Trigger reactivity
-                this.step = this.step;
-              });
-            });
+            this.$el.addEventListener('input', () => this.$dispatch('input-changed'));
+            this.$el.addEventListener('change', () => this.$dispatch('input-changed'));
           });
-        ">
+        " @input-changed.window="step = step">
           <div class="flex items-start justify-between">
             <div>
               <h1 class="heading-section">Client Intake Form</h1>
@@ -121,7 +116,7 @@ const description = 'Start your professional website development. Complete the i
                 </div>
                 <div>
                   <label class="label">Phone Number *</label>
-                  <input class="input" type="tel" name="phone" placeholder="+27 XX XXX XXXX" required />
+                  <input class="input" type="text" name="phone" placeholder="0814623628 or +27814623628" required />
                 </div>
               </div>
               <div>
