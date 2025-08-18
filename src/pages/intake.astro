@@ -18,7 +18,35 @@ const description = 'Start your professional website development. Complete the i
   <section class="section">
     <div class="container-page">
       <div class="max-w-3xl mx-auto">
-        <div class="card p-6 md:p-8" x-data="{ step: 1, total: 3, showAll: false }">
+        <div class="card p-6 md:p-8" x-data="{ 
+          step: 1, 
+          total: 3, 
+          showAll: false,
+          validateStep(stepNumber) {
+            const form = this.$el.querySelector('form');
+            const currentStepElement = this.$refs['step' + stepNumber];
+            const requiredInputs = currentStepElement.querySelectorAll('input[required], select[required], textarea[required]');
+            
+            let isValid = true;
+            requiredInputs.forEach(input => {
+              if (!input.value.trim()) {
+                input.classList.add('border-red-500');
+                input.focus();
+                isValid = false;
+              } else {
+                input.classList.remove('border-red-500');
+              }
+            });
+            
+            return isValid;
+          },
+          nextStep() {
+            if (this.validateStep(this.step)) {
+              this.step++;
+              window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+          }
+        }">
           <div class="flex items-start justify-between">
             <div>
               <h1 class="heading-section">Client Intake Form</h1>
@@ -67,7 +95,7 @@ const description = 'Start your professional website development. Complete the i
               </div>
 
               <div class="pt-4 flex items-center justify-end gap-3">
-                <button type="button" class="button-primary" @click="step = 2; window.scrollTo({top: 0, behavior: 'smooth'})">Next</button>
+                <button type="button" class="button-primary" @click="nextStep()">Next</button>
               </div>
             </div>
 
@@ -139,7 +167,7 @@ const description = 'Start your professional website development. Complete the i
 
               <div class="pt-4 flex items-center justify-between gap-3">
                 <button type="button" class="button-secondary" @click="step = 1; window.scrollTo({top: 0, behavior: 'smooth'})">Back</button>
-                <button type="button" class="button-primary" @click="step = 3; window.scrollTo({top: 0, behavior: 'smooth'})">Next</button>
+                <button type="button" class="button-primary" @click="nextStep()">Next</button>
               </div>
             </div>
 

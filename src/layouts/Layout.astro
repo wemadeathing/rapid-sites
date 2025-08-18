@@ -15,6 +15,8 @@ const { title = 'Website Design South Africa | Professional Business Websites in
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="//unpkg.com" />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
     <meta name="keywords" content="website design south africa, web development cape town, web design johannesburg, web development durban, small business websites, restaurant websites, law firm websites, medical practice websites, rapid website delivery, affordable web development, mobile responsive websites, seo websites" />
     
     		<!-- Google Search Console Verification -->
@@ -46,16 +48,25 @@ const { title = 'Website Design South Africa | Professional Business Websites in
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Funnel+Display:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Funnel+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
     
-    		<!-- Google Analytics 4 -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFV950WVL0"></script>
+    		<!-- Google Analytics 4 - Optimized Loading -->
+		<link rel="preconnect" href="https://www.googletagmanager.com">
 		<script is:inline>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-KFV950WVL0');
+			// Defer GA loading for better performance
+			window.addEventListener('load', function() {
+				const script = document.createElement('script');
+				script.async = true;
+				script.src = 'https://www.googletagmanager.com/gtag/js?id=G-KFV950WVL0';
+				document.head.appendChild(script);
+				
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){window.dataLayer.push(arguments);}
+				gtag('js', new Date());
+				gtag('config', 'G-KFV950WVL0');
+			});
 		</script>
     
-    <!-- Alpine.js -->
+    <!-- Alpine.js - Preloaded for Performance -->
+    <link rel="preload" href="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" as="script">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
     <!-- Schema.org Structured Data -->
