@@ -29,18 +29,22 @@ exports.handler = async (event, context) => {
       contact_name: extract('contact_name') || '',
       email: extract('email') || '',
       phone: extract('phone') || '',
+      whatsapp: extract('whatsapp') || '',
       location: extract('location') || '',
       industry: extract('industry') || '',
       business_description: extract('business_description') || '',
       services: extract('services') || '',
       target_customers: extract('target_customers') || '',
+      business_hours: extract('business_hours') || '',
+      brand_colors: extract('brand_colors') || '',
+      business_tone: extract('business_tone') || '',
       current_website: extract('current_website') || '',
       has_domain: extract('has_domain') || '',
       domain_name: extract('domain_name') || '',
       has_hosting: extract('has_hosting') || '',
       goals: Array.isArray(extract('goals[]')) ? extract('goals[]').join(', ') : (extract('goals[]') || 'N/A'),
       features: Array.isArray(extract('features[]')) ? extract('features[]').join(', ') : (extract('features[]') || 'N/A'),
-      special_content: extract('special_content') || '',
+      competitive_advantage: extract('competitive_advantage') || '',
       source: extract('source') || '',
       additional_notes: extract('additional_notes') || ''
     };
@@ -76,7 +80,11 @@ exports.handler = async (event, context) => {
         <p><strong>Contact:</strong> ${data.contact_name}</p>
         <p><strong>Email:</strong> ${data.email}</p>
         <p><strong>Phone:</strong> ${data.phone}</p>
-        <p><strong>Location:</strong> ${data.location}</p>
+        <p><strong>WhatsApp:</strong> ${data.whatsapp}</p>
+        <p><strong>Address:</strong> ${data.location}</p>
+        <p><strong>Business Hours:</strong> ${data.business_hours}</p>
+        <p><strong>Business Tone:</strong> ${data.business_tone}</p>
+        <p><strong>Brand Colors:</strong> ${data.brand_colors || 'N/A'}</p>
         <hr>
         <h3>===== AI RESEARCH INPUTS =====</h3>
         <p><strong>Industry:</strong> ${data.industry}</p>
@@ -93,7 +101,7 @@ exports.handler = async (event, context) => {
         <h3>===== WEBSITE REQUIREMENTS =====</h3>
         <p><strong>Primary Goals:</strong> ${data.goals}</p>
         <p><strong>Requested Features:</strong> ${data.features}</p>
-        <p><strong>Special Content:</strong> ${data.special_content || 'N/A'}</p>
+        <p><strong>Competitive Advantage:</strong> ${data.competitive_advantage || 'N/A'}</p>
         <hr>
         <h3>===== PAYMENT STATUS =====</h3>
         <p><strong>AWAITING DEPOSIT:</strong> R2,750</p>
