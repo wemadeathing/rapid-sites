@@ -177,7 +177,9 @@ const { title = 'Website Design South Africa | Professional Business Websites in
       } 
       body { font-family: var(--font-sans); } 
       h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
-      [x-cloak] { display: none !important; } 
+      [x-cloak] { display: none !important; }
+
+/* N8N Chat styling moved to N8nChatWidget.astro with is:global to ensure build inclusion */
     </style>
     <slot name="head" />
     <ViewTransitions />

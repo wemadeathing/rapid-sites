@@ -113,3 +113,5 @@ BUTTON DESIGN SYSTEM RULES:
   @apply rounded-[24px] border-2 border-neutral-800 bg-white/90 py-8 md:py-12;
 }
 
+/* N8N Chat styling moved to Layout.astro for proper load order */
+
