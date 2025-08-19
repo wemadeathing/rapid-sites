@@ -1,0 +1,215 @@
+---
+// Official n8n Chat Widget Component
+// Uses the @n8n/chat package for proper integration
+---
+
+<!-- Container for n8n chat widget -->
+<div id="n8n-chat"></div>
+
+<script>
+  import '@n8n/chat/style.css';
+  import { createChat } from '@n8n/chat';
+
+  // Initialize the chat widget when the page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    createChat({
+      webhookUrl: 'https://nexevo.app.n8n.cloud/webhook/4bf2a600-f2ad-401b-bdb3-71868b66b1ee/chat',
+      mode: 'window',
+      target: '#n8n-chat',
+      showWelcomeScreen: false,
+      initialMessages: [
+        'Hi there! 👋',
+        'I\'m here to help you with your website development needs. How can I assist you today?'
+      ],
+      i18n: {
+        en: {
+          title: 'Rapid Sites Assistant',
+          subtitle: "",
+          footer: '',
+          getStarted: 'Start Chat',
+          inputPlaceholder: 'Type your question here...',
+          closeButtonTooltip: 'Close chat',
+        },
+      },
+      loadPreviousSession: true,
+      enableStreaming: true,
+      metadata: {
+        source: 'rapid-sites-website',
+        version: '1.0'
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Custom styling to perfectly match Rapid Sites design system */
+  :root {
+    /* Exact brand colors from your design system */
+    --chat--color-primary: #1EBFBF; /* var(--color-brand-600) */
+    --chat--color-primary-shade-50: #1ED4C7; /* var(--color-brand-500) */
+    --chat--color-primary-shade-100: #009A91; /* var(--color-brand-800) */
+    --chat--color-secondary: #1EBFBF;
+    --chat--color-secondary-shade-50: #009A91;
+    
+    /* UI colors matching your exact neutral system */
+    --chat--color-white: #ffffff;
+    --chat--color-light: #f9fafb; /* neutral-50 - your body background */
+    --chat--color-light-shade-50: #f3f4f6; /* neutral-100 */
+    --chat--color-light-shade-100: #e5e7eb; /* neutral-200 */
+    --chat--color-medium: #d1d5db; /* neutral-300 */
+    --chat--color-dark: #111827; /* neutral-900 - your text color */
+    --chat--color-disabled: #6b7280; /* neutral-500 */
+    --chat--color-typing: #6b7280; /* neutral-500 for muted text */
+
+    /* Layout matching your design system exactly */
+    --chat--spacing: 1rem;
+    --chat--border-radius: 12px; /* var(--radius-card) */
+    --chat--transition-duration: 0.2s; /* matches your transition-all duration-200 */
+
+    /* Chat window dimensions optimized for your UI */
+    --chat--window--width: 384px; /* w-96 equivalent */
+    --chat--window--height: 500px;
+
+    /* Header styling - pure black background with smaller title */
+    --chat--header--padding: 0.75rem 1rem; /* py-3 px-4 - slightly less padding */
+    --chat--header--background: #000000 !important; /* pure black - force override */
+    --chat--header--color: #ffffff;
+    --chat--header--border-bottom: 1px solid rgba(229, 231, 235, 0.8); /* border-neutral-200/80 */
+    --chat--heading--font-size: 0.875rem; /* text-sm - smaller title */
+    --chat--subtitle--font-size: 0.75rem; /* text-xs - matching your label class */
+    --chat--subtitle--line-height: 1.5;
+
+    /* Message styling matching your form inputs */
+    --chat--message--font-size: 0.75rem; /* text-xs - smaller text for better readability */
+    --chat--message--padding: 0.625rem 0.875rem; /* slightly reduced padding */
+    --chat--message--border-radius: 8px; /* var(--radius-input) for consistency */
+    --chat--message-line-height: 1.4;
+    --chat--message--bot--background: #f3f4f6; /* neutral-100 */
+    --chat--message--bot--color: #111827; /* neutral-900 */
+    --chat--message--bot--border: 1px solid rgba(229, 231, 235, 0.8); /* matching your card borders */
+    --chat--message--user--background: #1EBFBF; /* var(--color-brand-600) - your exact brand teal */
+    --chat--message--user--color: #000000; /* black text on teal - matching button-primary-on-dark */
+    --chat--message--user--border: none;
+    --chat--message--pre--background: rgba(0, 0, 0, 0.05);
+
+    /* Toggle button matching your button system */
+    --chat--toggle--background: #1EBFBF; /* var(--color-brand-600) */
+    --chat--toggle--hover--background: #1ED4C7; /* var(--color-brand-500) */
+    --chat--toggle--active--background: #009A91; /* var(--color-brand-800) */
+    --chat--toggle--color: #000000; /* black text matching your teal buttons */
+    --chat--toggle--size: 56px; /* w-14 h-14 */
+
+    /* Input area matching your form inputs exactly */
+    --chat--textarea--height: 42px; /* py-2 + text-sm + borders */
+  }
+
+  /* Font family matching your system */
+  #n8n-chat {
+    z-index: 50;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  #n8n-chat * {
+    font-family: inherit;
+  }
+
+  /* Chat window styling to match your card class */
+  #n8n-chat [data-chat-window] {
+    border: 1px solid rgba(229, 231, 235, 0.8) !important; /* border-neutral-200/80 */
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25) !important;
+    background: #ffffff !important;
+    border-radius: 12px !important; /* var(--radius-card) */
+  }
+
+  /* Input field styling to match your input class */
+  #n8n-chat textarea, 
+  #n8n-chat input[type="text"] {
+    border: 1px solid #e5e7eb !important; /* border-neutral-200 */
+    border-radius: 8px !important; /* var(--radius-input) */
+    font-size: 0.875rem !important; /* text-sm */
+    padding: 0.5rem 0.75rem !important; /* py-2 px-3 */
+    transition: all 0.2s !important;
+  }
+
+  #n8n-chat textarea:focus,
+  #n8n-chat input[type="text"]:focus {
+    outline: none !important;
+    border-color: #B8F4EE !important; /* var(--color-brand-200) */
+    box-shadow: 0 0 0 2px rgba(184, 244, 238, 0.5) !important; /* focus:ring-2 focus:ring-[var(--color-brand-300)] */
+  }
+
+  /* Send button matching your button-primary style */
+  #n8n-chat button[type="submit"] {
+    background: #000000 !important; /* bg-black */
+    color: #ffffff !important; /* text-white */
+    border-radius: 8px !important; /* matching input radius for consistency */
+    font-size: 0.875rem !important; /* text-sm */
+    font-weight: 500 !important; /* font-medium */
+    padding: 0.5rem 0.75rem !important;
+    transition: all 0.2s !important;
+  }
+
+  #n8n-chat button[type="submit"]:hover {
+    background: #374151 !important; /* hover:bg-neutral-800 */
+  }
+
+  /* Position matching your original WhatsApp widget */
+  #n8n-chat [data-chat-toggle] {
+    bottom: 1.25rem !important; /* bottom-5 */
+    right: 1.25rem !important; /* right-5 */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important; /* matching your original shadow */
+  }
+
+  /* Force black header background - multiple selectors to override n8n defaults */
+  #n8n-chat [data-chat-header],
+  #n8n-chat .chat-header,
+  #n8n-chat header,
+  #n8n-chat [class*="header"] {
+    background: #000000 !important; /* force pure black */
+    background-color: #000000 !important; /* force pure black */
+  }
+
+  /* Header text styling - smaller title, no subtitle, custom font */
+  #n8n-chat .chat-header h3,
+  #n8n-chat [data-chat-header] h3,
+  #n8n-chat header h3 {
+    font-family: "RapidSides Assistant", 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-weight: 500 !important; /* font-medium */
+    font-size: 0.875rem !important; /* text-sm - smaller */
+    color: #ffffff !important; /* ensure white text */
+  }
+
+  #n8n-chat .chat-header p,
+  #n8n-chat [data-chat-header] p,
+  #n8n-chat header p {
+    display: none !important; /* hide subtitle completely */
+  }
+
+  /* Bot message styling - smaller text size */
+  #n8n-chat [data-role="bot"],
+  #n8n-chat .message-bot,
+  #n8n-chat [class*="bot"],
+  #n8n-chat .message:not([data-role="user"]):not([class*="user"]) {
+    font-size: 0.75rem !important; /* text-xs - smaller bot messages */
+    line-height: 1.4 !important;
+    padding: 0.625rem 0.875rem !important; /* reduced padding */
+  }
+
+  /* User message styling - force brand teal */
+  #n8n-chat [data-role="user"],
+  #n8n-chat .message-user,
+  #n8n-chat [class*="user"] {
+    background: #1EBFBF !important; /* var(--color-brand-600) - your exact brand teal */
+    background-color: #1EBFBF !important;
+    color: #000000 !important; /* black text */
+    font-size: 0.75rem !important; /* text-xs - consistent with bot messages */
+    line-height: 1.4 !important;
+    padding: 0.625rem 0.875rem !important; /* reduced padding */
+  }
+
+  /* Message timestamp styling */
+  #n8n-chat .message-time {
+    font-size: 0.6875rem !important; /* text-xs but smaller */
+    color: #6b7280 !important; /* text-neutral-500 */
+  }
+</style>
