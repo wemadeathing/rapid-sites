@@ -57,7 +57,7 @@
     --chat--message--font-size: 0.75rem !important; /* text-xs */
     --chat--message--padding: 0.625rem 0.875rem !important;
     --chat--message-line-height: 1.4 !important;
-    --chat--toggle--background: #1EBFBF !important; /* var(--color-brand-600) */
+    --chat--toggle--background: #e74266 !important; /* n8n pink */
     --chat--toggle--hover--background: #1ED4C7 !important; /* var(--color-brand-500) */
     --chat--toggle--active--background: #009A91 !important; /* var(--color-brand-800) */
     --chat--message--user--background: #1EBFBF !important; /* var(--color-brand-600) */
@@ -110,5 +110,12 @@
   .n8n-chat [data-chat-header] p,
   .n8n-chat header p {
     display: none !important;
+  }
+
+  /* Darker teal for floating toggle button */
+  .n8n-chat-toggle,
+  button[class*="toggle"],
+  [class*="chat-toggle"] {
+    background: #009A91 !important; /* darker teal so it stands out on teal sections */
   }
 </style>
