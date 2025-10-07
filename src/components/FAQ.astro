@@ -66,9 +66,9 @@
       <div x-data="{open:true}" class="bg-white rounded-2xl border-2 border-neutral-900">
         <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
           <span class="font-semibold text-neutral-900">How quickly will my website be ready?</span>
-          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
         </button>
-        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="px-6 pb-5 text-neutral-700">
           Your website will be ready for you to check within 48 hours of paying your deposit. After you request any changes (one round included), final payment is due and we'll make it live.
         </div>
       </div>
@@ -76,9 +76,9 @@
       <div x-data="{open:false}" class="bg-white rounded-2xl border-2 border-neutral-900">
         <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
           <span class="font-semibold text-neutral-900">What if I need changes after you build it?</span>
-          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
         </button>
-        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="px-6 pb-5 text-neutral-700">
           We include one round of changes for free - you can ask us to change text, replace pictures, or update contact details. If you want to change the design or layout, that would cost extra.
         </div>
       </div>
@@ -86,9 +86,9 @@
       <div x-data="{open:false}" class="bg-white rounded-2xl border-2 border-neutral-900">
         <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
           <span class="font-semibold text-neutral-900">What's included in the revision cycle?</span>
-          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
         </button>
-        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="px-6 pb-5 text-neutral-700">
           You can ask us to change any text, replace pictures, and update your contact details. We can't change the overall design or add new sections.
         </div>
       </div>
@@ -96,9 +96,9 @@
       <div x-data="{open:false}" class="bg-white rounded-2xl border-2 border-neutral-900">
         <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
           <span class="font-semibold text-neutral-900">Do you include hosting?</span>
-          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
         </button>
-        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="px-6 pb-5 text-neutral-700">
           No, you'll need to buy your own hosting (we can recommend good, affordable South African hosting companies). This way you own everything and don't depend on us.
         </div>
       </div>
@@ -106,9 +106,9 @@
       <div x-data="{open:false}" class="bg-white rounded-2xl border-2 border-neutral-900">
         <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
           <span class="font-semibold text-neutral-900">Why is the timeline dependent on my feedback?</span>
-          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
         </button>
-        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="px-6 pb-5 text-neutral-700">
           We build your website quickly, but you need to check it and tell us any changes within your one revision round. Once that's done, final payment is due and we make it live.
         </div>
       </div>
@@ -116,9 +116,9 @@
       <div x-data="{open:false}" class="bg-white rounded-2xl border-2 border-neutral-900">
         <button @click="open=!open" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none" aria-expanded="false" :aria-expanded="open">
           <span class="font-semibold text-neutral-900">What makes this different from DIY builders?</span>
-          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+          <svg :class="open ? 'rotate-180' : ''" class="w-5 h-5 text-neutral-900 transition-transform duration-150 ease-in-out" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
         </button>
-        <div x-show="open" x-transition class="px-6 pb-5 text-neutral-700">
+        <div x-show="open" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="px-6 pb-5 text-neutral-700">
           We do all the work for you - no learning complicated tools or spending hours trying to make it look professional. You get a custom website that's built specifically for your business by experts.
         </div>
       </div>
