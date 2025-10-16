@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
-const { title = 'Website Design South Africa | Professional Business Websites in 48 Hours | Rapid Sites', description = 'Professional website design for South African businesses in Cape Town, Johannesburg & Durban. R5,500 total investment, 48-hour delivery. Mobile-optimized, SEO-ready websites that get found on Google.' } = Astro.props;
+const { title = 'Affordable Web Design South Africa | Fast Business Websites Cape Town | Rapid Sites', description = 'Professional website design for South African businesses in Cape Town, Johannesburg & Durban. Fast 48-hour delivery, mobile-optimized, SEO-ready websites from R7,500. Get more customers online today!' } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en" x-data x-cloak>
@@ -16,24 +16,34 @@ const { title = 'Website Design South Africa | Professional Business Websites in
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="dns-prefetch" href="//unpkg.com" />
+    <link rel="dns-prefetch" href="//i.pravatar.cc" />
     <link rel="preconnect" href="https://unpkg.com" crossorigin />
-    <meta name="keywords" content="website design south africa, web development cape town, web design johannesburg, web development durban, small business websites, restaurant websites, law firm websites, medical practice websites, rapid website delivery, affordable web development, mobile responsive websites, seo websites" />
+    <link rel="preconnect" href="https://i.pravatar.cc" crossorigin />
+    <!-- Performance Optimizations -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#1EBFBF" />
+    <meta name="msapplication-TileColor" content="#1EBFBF" />
     
-    		<!-- Google Search Console Verification -->
-		<meta name="google-site-verification" content="stCaKMdq0VrqfuZ2IoR7XPlgZkfrIc7SnXvvk5pzrLQ" />
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" />
+    
+    <meta name="keywords" content="affordable web design South Africa, business website packages Cape Town, fast website launch SA, hire website designer South Africa, small business websites South Africa, professional website design Cape Town, web development Johannesburg, website design Durban, mobile responsive websites SA, SEO websites South Africa, restaurant websites Cape Town, law firm websites Johannesburg, medical practice websites Durban, startup websites South Africa, SME websites Cape Town, business websites Johannesburg, professional web design Durban, fast website development SA, affordable website design Cape Town, mobile-first websites South Africa, Google-ready websites SA, lead generation websites South Africa, conversion-focused websites Cape Town, business online presence Johannesburg, website launch 48 hours SA" />
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="stCaKMdq0VrqfuZ2IoR7XPlgZkfrIc7SnXvvk5pzrLQ" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rapidsites.co.za/" />
-    <meta property="og:title" content="Website Design South Africa | Professional Business Websites in 48 Hours" />
-    <meta property="og:description" content="Professional website design for South African businesses in Cape Town, Johannesburg & Durban. R5,500 total investment, 48-hour delivery." />
+    <meta property="og:title" content="Affordable Web Design South Africa | Fast Business Websites Cape Town" />
+    <meta property="og:description" content="Professional website design for South African businesses in Cape Town, Johannesburg & Durban. Fast 48-hour delivery, mobile-optimized, SEO-ready websites from R7,500. Get more customers online today!" />
     <meta property="og:image" content="https://rapidsites.co.za/og-image.jpg" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://rapidsites.co.za/" />
-    <meta property="twitter:title" content="Website Design South Africa | Professional Business Websites in 48 Hours" />
-    <meta property="twitter:description" content="Professional website design for South African businesses in Cape Town, Johannesburg & Durban. R5,500 total investment, 48-hour delivery." />
+    <meta property="twitter:title" content="Affordable Web Design South Africa | Fast Business Websites Cape Town" />
+    <meta property="twitter:description" content="Professional website design for South African businesses in Cape Town, Johannesburg & Durban. Fast 48-hour delivery, mobile-optimized, SEO-ready websites from R7,500. Get more customers online today!" />
     <meta property="twitter:image" content="https://rapidsites.co.za/og-image.jpg" />
     
     <!-- Favicon -->
@@ -114,11 +124,11 @@ const { title = 'Website Design South Africa | Professional Business Websites in
           "@id": "https://rapidsites.co.za/#localbusiness",
           "name": "Rapid Sites",
           "image": "https://rapidsites.co.za/rapid-sites-logo.png",
-          "description": "Professional website design for South African businesses. R5,500 total investment, 48-hour delivery.",
+          "description": "Professional website design for South African businesses. From R7,500 total investment, 48-hour delivery.",
           "url": "https://rapidsites.co.za",
           "telephone": "+27-61-463-1005",
           "email": "hello@rapidsites.co.za",
-          "priceRange": "R5500",
+          "priceRange": "R7500",
           "address": {
             "@type": "PostalAddress",
             "addressCountry": "ZA",
@@ -159,7 +169,7 @@ const { title = 'Website Design South Africa | Professional Business Websites in
                   "name": "Professional Website Development",
                   "description": "Complete website design and development with mobile optimization and SEO"
                 },
-                "price": "5500",
+                "price": "7500",
                 "priceCurrency": "ZAR",
                 "availability": "https://schema.org/InStock"
               }
